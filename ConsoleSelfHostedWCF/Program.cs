@@ -27,9 +27,10 @@ namespace ConsoleSelfHostedWCF
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Starting on" + System.Environment.GetEnvironmentVariable("PORT"));
-            
-            Uri baseAddress = new Uri("http://localhost:" + System.Environment.GetEnvironmentVariable("PORT"));
+            Console.WriteLine("Starting on port " + System.Environment.GetEnvironmentVariable("PORT"));
+
+            // also tried 0.0.0.0
+            Uri baseAddress = new Uri("http://+:" + System.Environment.GetEnvironmentVariable("PORT") + "/api");
 
             // Create the ServiceHost.
             using (ServiceHost host = new ServiceHost(typeof(HelloWorldService), baseAddress))
